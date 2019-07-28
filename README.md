@@ -5,6 +5,10 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/luolongfei/freenom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
 
+docker执行命令
+
+docker run -d --name freenom -v /yourconf:/conf pqguanyinli/freenom-automatic-renewal 
+
 ### 前言
 众所周知，freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
@@ -16,18 +20,19 @@
 邮件参考了微信发送的注销公众号的邮件样式，微调一把，现在看到的这个效果还算满意。
 
 ### 使用方法
-一言以蔽之。将config.php中的freenom账号和freenom密码改为自己的，以及邮箱账户和邮箱密码也改为自己的，配置文件里都有注释，根据感觉改。
+一言以蔽之。将config.php中的freenom账号和freenom密码改为自己的，以及邮箱信息也改为自己的，配置文件里都有注释，根据感觉改。
 然后丢服务器上，创建crontab定时任务每天自动执行。
 
 #### 原料准备
-- Gmail邮箱（最好是申请一个新的gmail小号，别用自己的主力邮箱账户）
+- 邮箱信息
 - 本项目源码
 - 一台VPS
 
-#### Gmail邮箱
-*实际上用其它邮箱也行，不过其它邮箱需要改的东西不一样，需要你自己谷歌一下。推荐使用gmail，只需两步。*
+#### 邮箱
+*支持所有SMTP协议的邮箱*
 
-1、在`设置>转发和POP/IMAP`中，勾选
+1、记得在邮箱设置里打开POP和IMAP协议（以Gmail为例）
+
 - 对所有邮件启用 POP 
 - 启用 IMAP
 
@@ -35,7 +40,7 @@
 
 然后保存更改。
 
-2、允许不够安全的应用
+2、Gmail必须允许不够安全的应用
 
 登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
 
